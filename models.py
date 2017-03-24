@@ -41,7 +41,7 @@ class CarInParking(Base):
     __tablename__ = 'car_in_parking'
     id = Column(Integer, primary_key=True)
     timestamp = Column(DateTime, default=datetime.datetime.utcnow)
-    car_id = Column(Integer, ForeignKey('car.id'))
+    car_id = Column(String(10), ForeignKey('car.id'))
     car = relationship(Car)
 
 Base.metadata.create_all(engine)
