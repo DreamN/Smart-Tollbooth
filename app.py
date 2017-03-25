@@ -30,18 +30,20 @@ def removeCarParking(car_id):
     print '%s is removed from the parking' % car.id
 
 def printCarList():
-    car_list = session.query(Car)
-    print '\n\n\n<================================>'
+    car_list = session.query(Car).all()
+    print '\n\n\n#================================#'
     print 'There\'s a %d car in the system.' % len(car_list)
     for car in car_list:
         print '%s %s %s' % (car.id, car.owner, car.rfid_id)
+    print '#================================#'
 
 def printCarParkingList():
-    print '\n\n\n<================================>'
-    parking_list = session.query(CarInParking)
-    print 'There\'s a %d car in parking.' % len(car_in_parking)
+    print '\n\n\n#================================#'
+    parking_list = session.query(CarInParking).all()
+    print 'There\'s a %d car in parking.' % len(parking_list)
     for car in parking_list:
         print '%s %s %s' % (car.id, car.owner, car.rfid_id)
+    print '#================================#'
 
 def addCar(car_id, car_owner, car_rfid_id):
     try:
@@ -50,6 +52,10 @@ def addCar(car_id, car_owner, car_rfid_id):
         session.commit()
     except:
         print 'Can\'t add this car....\n\t error happens'
+
+def printInfo():
+    printCarList()
+    printCarParkingList()
 
 #+-----------------------------------------------------+#
 #|                     Flask's View                    +#
