@@ -24,15 +24,14 @@ def printInfo():
     printCarList()
     printCarParkingList()
 
-def insertCarParking(car_id):
-    car = session.query(Car).filter_by(id = car_id).one()
+def insertCarParking(car):
     newCar = CarInParking(car = car)
     session.add(newCar)
     session.commit()
     print 'Inserted %s to the parking' % car.id
 
-def removeCarParking(car_id):
-    deleteCar = session.query(CarInParking).filter_by(car_id = car_id).one()
+def removeCarParking(car):
+    deleteCar = session.query(CarInParking).filter_by(car = car).one()
     session.delete(deleteCar)
     session.commit()
     print '%s is removed from the parking' % deleteCar.car_id
@@ -82,7 +81,7 @@ def carComing(rfid_id):
         match = raw_input(bcolors.WARNING + "Please enter.... [Y]es / [N]o :" + \
                 bcolors.ENDC).upper()
     if match == 'Y':
-        insertCarParking(car.id)
+        insertCarParking(car)
         print bcolors.OKGREEN + 'Access Granted!!' + bcolors.ENDC
     else:
         print bcolors.REDFAIL + 'Access Denied!!' + bcolors.ENDC
