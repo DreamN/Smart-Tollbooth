@@ -13,8 +13,8 @@ app = Flask(__name__)
 #|                 Function Declaration                +#
 #+-----------------------------------------------------+#
 def printInfo():
-    car_in_parking = session.query(CarInParking)
-    print 'There\'s a %d car in parking.' % len(car_in_parking)
+    printCarList()
+    printCarParkingList()
 
 def insertCarParking(car_id):
     car = session.query(Car).filter_by(id = car_id).one()
@@ -31,9 +31,16 @@ def removeCarParking(car_id):
 
 def printCarList():
     car_list = session.query(Car)
-    print '<================================>'
+    print '\n\n\n<================================>'
     print 'There\'s a %d car in the system.' % len(car_list)
     for car in car_list:
+        print '%s %s %s' % (car.id, car.owner, car.rfid_id)
+
+def printCarParkingList():
+    print '\n\n\n<================================>'
+    parking_list = session.query(CarInParking)
+    print 'There\'s a %d car in parking.' % len(car_in_parking)
+    for car in parking_list:
         print '%s %s %s' % (car.id, car.owner, car.rfid_id)
 
 def addCar(car_id, car_owner, car_rfid_id):
