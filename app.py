@@ -10,6 +10,13 @@ from prettytable import PrettyTable
 
 app = Flask(__name__)
 
+class bcolors:
+    REDFAIL = '\033[91m'
+    OKGREEN = '\033[92m'
+    WARNING = '\033[93m'
+    ENDC = '\033[0m'
+
+
 #+-----------------------------------------------------+#
 #|                 Function Declaration                +#
 #+-----------------------------------------------------+#
@@ -61,6 +68,25 @@ def addCar(car_id, car_owner, car_rfid_id):
 def printInfo():
     printCarList()
     printCarParkingList()
+
+def carComing(rfid_id):
+    print 'the rfid : %s is coming....' % rfid_id
+    try:
+        car = session.query(Car).filter_by(rfid_id = rfid_id).one()
+    except:
+        print 'Car Not Found'
+        return False
+    print 'is this car id "%s" ?' % car.id
+    match = ''
+    while match != 'Y' and match != 'N':
+        match = raw_input(bcolors.WARNING + "Please enter.... [Y]es / [N]o :" + \
+                bcolors.ENDC).upper()
+    if match == 'Y':
+        insertCarParking(car.id)
+        print bcolors.OKGREEN + 'Access Granted!!' + bcolors.ENDC
+    else:
+        print bcolors.REDFAIL + 'Access Denied!!' + bcolors.ENDC
+
 
 #+-----------------------------------------------------+#
 #|                     Flask's View                    +#
