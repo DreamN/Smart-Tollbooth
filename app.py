@@ -35,12 +35,12 @@ def removeCarParking(car):
 
 def printCarList():
     car_list = session.query(Car).all()
-    table = PrettyTable(['ID', 'OWNER', 'RFID_ID'])
+    table = PrettyTable(['ID', 'OWNER', 'RFID ID', 'IS PARKING'])
     table.align["ID"] = "l"
     table.padding_width = 1
     print 'There\'s a %d car in the system.' % len(car_list)
     for car in car_list:
-        table.add_row([car.id, car.owner, car.rfid_id])
+        table.add_row([car.id, car.owner, car.rfid_id, car.is_parking])
     print table
     print '\n\n\n'
 
@@ -77,13 +77,22 @@ def carComing(rfid_id):
         print 'Car Not Found'
         print '\n\n\n'
         return False
-    print 'is this car id "%s" ?' % car.id
+    if car.is_parking:
+        print 'is this car id "%s"? and go out?' % car.id
+    else:
+        print 'is this car id "%s"? and come in?' % car.id
     match = ''
     while match != 'Y' and match != 'N':
         match = raw_input(bcolors.WARNING + "Please enter.... [Y]es / [N]o :" + \
                 bcolors.ENDC).upper()
     if match == 'Y':
-        insertCarParking(car)
+        car.is_parking = not car.is_parking
+        session.add(car)
+        session.commit()
+        if car.is_parking:
+            insertCarParking(car)
+        else:
+            removeCarParking(car)
         print bcolors.OKGREEN + 'Access Granted!!' + bcolors.ENDC
     else:
         print bcolors.REDFAIL + 'Access Denied!!' + bcolors.ENDC

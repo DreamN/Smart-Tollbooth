@@ -4,7 +4,7 @@
 import os
 import sys
 import datetime
-from sqlalchemy import Column, ForeignKey, Integer, String, DateTime
+from sqlalchemy import Column, ForeignKey, Integer, String, DateTime, Boolean
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship, sessionmaker
 from sqlalchemy import create_engine
@@ -26,6 +26,7 @@ class Car(Base):
     id = Column(String(10), primary_key=True)
     owner = Column(String(250), nullable=False)
     rfid_id = Column(String(250), nullable=False)
+    is_parking = Column(Boolean, default=False)
 
     @property
     def serialize(self):
