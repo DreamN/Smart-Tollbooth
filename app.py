@@ -5,6 +5,7 @@
 from flask import Flask, jsonify
 from sqlalchemy import create_engine
 from models import Base, engine, session, Car, CarInParking
+from prettytable import PrettyTable
 
 
 app = Flask(__name__)
@@ -31,19 +32,23 @@ def removeCarParking(car_id):
 
 def printCarList():
     car_list = session.query(Car).all()
-    print '\n\n\n#================================#'
-    print 'There\'s a %d car in the system.' % len(car_list)
+    table = PrettyTable(['ID', 'OWNER', 'RFID_ID'])
+    table.align["ID"] = "l"
+    table.padding_width = 1
+    print '\n\n\nThere\'s a %d car in the system.' % len(car_list)
     for car in car_list:
-        print '%s %s %s' % (car.id, car.owner, car.rfid_id)
-    print '#================================#'
+        table.add_row([car.id, car.owner, car.rfid_id])
+    print table
 
 def printCarParkingList():
-    print '\n\n\n#================================#'
     parking_list = session.query(CarInParking).all()
-    print 'There\'s a %d car in parking.' % len(parking_list)
+    table = PrettyTable(['ID', 'TIMESTAMP', 'CAR_ID'])
+    table.align["ID"] = "l"
+    table.padding_width = 1
+    print '\n\n\nThere\'s a %d car in parking.' % len(parking_list)
     for car in parking_list:
-        print '%s %s %s' % (car.id, car.owner, car.rfid_id)
-    print '#================================#'
+        table.add_row([car.id, car.timestamp, car.car_id])
+    print table
 
 def addCar(car_id, car_owner, car_rfid_id):
     try:
