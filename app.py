@@ -28,7 +28,7 @@ def removeCarParking(car_id):
     deleteCar = session.query(CarInParking).filter_by(car_id = car_id).one()
     session.delete(deleteCar)
     session.commit()
-    print '%s is removed from the parking' % car.id
+    print '%s is removed from the parking' % deleteCar.car_id
 
 def printCarList():
     car_list = session.query(Car).all()
