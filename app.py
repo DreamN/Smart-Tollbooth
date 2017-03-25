@@ -20,9 +20,6 @@ class bcolors:
 #+-----------------------------------------------------+#
 #|                 Function Declaration                +#
 #+-----------------------------------------------------+#
-def printInfo():
-    printCarList()
-    printCarParkingList()
 
 def insertCarParking(car):
     newCar = CarInParking(car = car)
@@ -41,32 +38,36 @@ def printCarList():
     table = PrettyTable(['ID', 'OWNER', 'RFID_ID'])
     table.align["ID"] = "l"
     table.padding_width = 1
-    print '\n\n\nThere\'s a %d car in the system.' % len(car_list)
+    print 'There\'s a %d car in the system.' % len(car_list)
     for car in car_list:
         table.add_row([car.id, car.owner, car.rfid_id])
     print table
+    print '\n\n\n'
 
 def printCarParkingList():
     parking_list = session.query(CarInParking).all()
     table = PrettyTable(['ID', 'TIMESTAMP', 'CAR_ID'])
     table.align["ID"] = "l"
     table.padding_width = 1
-    print '\n\n\nThere\'s a %d car in parking.' % len(parking_list)
+    print 'There\'s a %d car in parking.' % len(parking_list)
     for car in parking_list:
         table.add_row([car.id, car.timestamp, car.car_id])
     print table
+    print '\n\n\n'
+
+def printInfo():
+    printCarList()
+    printCarParkingList()
 
 def addCar(car_id, car_owner, car_rfid_id):
     try:
         newCar = Car(id = car_id, owner = car_owner, rfid_id = car_rfid_id)
         session.add(newCar)
         session.commit()
+        print 'Registered the car %s into the system' % car_id
     except:
         print 'Can\'t add this car....\n\t error happens'
-
-def printInfo():
-    printCarList()
-    printCarParkingList()
+    print '\n\n\n'
 
 def carComing(rfid_id):
     print 'the rfid : %s is coming....' % rfid_id
@@ -74,6 +75,7 @@ def carComing(rfid_id):
         car = session.query(Car).filter_by(rfid_id = rfid_id).one()
     except:
         print 'Car Not Found'
+        print '\n\n\n'
         return False
     print 'is this car id "%s" ?' % car.id
     match = ''
@@ -85,6 +87,7 @@ def carComing(rfid_id):
         print bcolors.OKGREEN + 'Access Granted!!' + bcolors.ENDC
     else:
         print bcolors.REDFAIL + 'Access Denied!!' + bcolors.ENDC
+    print '\n\n\n'
 
 
 #+-----------------------------------------------------+#
