@@ -6,6 +6,8 @@ from flask import Flask, jsonify
 from sqlalchemy import create_engine
 from models import Base, engine, session, Car, CarInParking
 from prettytable import PrettyTable
+import servo
+import time
 
 
 app = Flask(__name__)
@@ -104,6 +106,10 @@ def carComing(rfid_id):
         else:
             removeCarParking(car)
         print bcolors.OKGREEN + 'Access Granted!!' + bcolors.ENDC
+        servo.openBarrier()
+        time.sleep(4)
+        servo.closeBarrier()
+
     else:
         print bcolors.REDFAIL + 'Access Denied!!' + bcolors.ENDC
     print '\n\n\n'
