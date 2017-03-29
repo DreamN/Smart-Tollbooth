@@ -131,6 +131,8 @@ def index():
 #+-----------------------------------------------------+#
 #|                  Start-Up Statement                 +#
 #+-----------------------------------------------------+#
+#Close the barrier when start
+servo.closeBarrier()
 
 if __name__ == "__main__":
     app.run(debug=True, host='0.0.0.0', port=80)
