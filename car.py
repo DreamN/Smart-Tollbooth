@@ -4,7 +4,7 @@
 
 from flask import Flask, jsonify
 from sqlalchemy import create_engine
-from models import Base, engine, session, Car, CarInParking
+from models import Base, engine, session, Car, Transaction
 from prettytable import PrettyTable
 import time
 import servo
@@ -117,3 +117,16 @@ def carComing(rfid_id):
     # else:
     #     print bcolors.REDFAIL + 'Access Denied!!' + bcolors.ENDC
     # print '\n\n\n'
+
+def acceptCar(id):
+    car = session.query(Car).filter_by(id = id).one()
+    print 'got car'
+    car.is_parking = not car.is_parking
+    session.add(car)
+    session.commit()
+    print 'done commit'
+    print bcolors.OKGREEN + 'Access Granted!!' + bcolors.ENDC
+    servo.openBarrier()
+    time.sleep(2)
+    servo.closeBarrier()
+    print 'done'

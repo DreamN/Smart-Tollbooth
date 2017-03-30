@@ -21,10 +21,21 @@ Buzzer = 7
 GPIO.setmode(GPIO.BOARD)
 GPIO.setup(Buzzer, GPIO.OUT)
 continue_reading = True
+
+def on_subscribe(client, userdata, mid, granted_qos):
+    print("Subscribed: "+str(mid)+" "+str(granted_qos))
+
+def on_message(client, userdata, msg):
+    print 'Response : ' + str(msg.payload)
+    acceptCar(msg.payload)
+
 # MQTT configuration
 client = mqtt.Client()
 client.username_pw_set("tbrpi", "random")
+client.on_subscribe = on_subscribe
+client.on_message = on_message
 client.connect('m13.cloudmqtt.com', 11675, 60)
+client.subscribe("/CAR/RES")
 client.loop_start()
 
 
@@ -88,4 +99,5 @@ while continue_reading:
         GPIO.output(Buzzer, GPIO.LOW)
         car_id, status = carComing(suid)
         print 'Car ID : ' + car_id
-        client.publish("/CAR", car_id)
+        client.publish("/CAR/IN", car_id)
+        print 'done'

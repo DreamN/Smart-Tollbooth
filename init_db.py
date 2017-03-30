@@ -7,8 +7,8 @@ def dropTable():
     try:
         conn = psycopg2.connect(getDatabaseString())
         cur = conn.cursor()
-        sql_command = 'DROP TABLE car_in_parking;'
         sql_command += 'DROP TABLE car;'
+        sql_command = 'DROP TABLE transaction;'
         cur.execute(sql_command)
         conn.commit()
         print 'Drop table success!'

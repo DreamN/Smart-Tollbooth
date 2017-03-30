@@ -37,12 +37,14 @@ class Car(Base):
         }
 
 
-class CarInParking(Base):
+class Transaction(Base):
 
-    __tablename__ = 'car_in_parking'
+    __tablename__ = 'transaction'
     id = Column(Integer, primary_key=True)
     timestamp = Column(DateTime, default=datetime.datetime.utcnow)
     car_id = Column(String(10), ForeignKey('car.id'))
     car = relationship(Car)
+    status = Column(String(10))
+    picture = Column(String(50))
 
 Base.metadata.create_all(engine)
