@@ -8,6 +8,7 @@
 import RPi.GPIO as GPIO
 import psycopg2
 from settings import getDatabaseString
+import paho.mqtt.client as mqtt
 from car import *
 import os
 import MFRC522
@@ -19,8 +20,13 @@ import servo
 Buzzer = 7
 GPIO.setmode(GPIO.BOARD)
 GPIO.setup(Buzzer, GPIO.OUT)
-
 continue_reading = True
+# MQTT configuration
+client = mqtt.Client()
+client.username_pw_set("tbrpi", "random")
+client.connect('m13.cloudmqtt.com', 11675, 60)
+client.loop_start()
+
 
 # Capture SIGINT for cleanup when the script is aborted
 def end_read(signal,frame):
@@ -77,8 +83,9 @@ while continue_reading:
             MIFAREReader.MFRC522_StopCrypto1()
         else:
             print "Authentication error"
-
         GPIO.output(Buzzer, GPIO.HIGH)
         time.sleep(0.4)
         GPIO.output(Buzzer, GPIO.LOW)
-        carComing(suid)
+        car_id, status = carComing(suid)
+        print 'Car ID : ' + car_id
+        client.publish("/CAR", car_id)

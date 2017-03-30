@@ -3,6 +3,5 @@ Flask
 gunicorn
 PrettyTable
 sqlalchemy
-spi
 pi-rc522
-openSPI
+paho-mqtt

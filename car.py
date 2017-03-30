@@ -85,31 +85,35 @@ def carComing(rfid_id):
     print 'the rfid : %s is coming....' % rfid_id
     try:
         car = session.query(Car).filter_by(rfid_id = rfid_id).one()
+        if car.is_parking:
+            return car.id, 'Go Out'
+        else:
+            return car.id, 'Come In'
     except:
         print 'Car Not Found'
         print '\n\n\n'
-        return False
-    if car.is_parking:
-        print 'is this car id "%s"? and go out?' % car.id
-    else:
-        print 'is this car id "%s"? and come in?' % car.id
-    match = ''
-    while match != 'Y' and match != 'N':
-        match = raw_input(bcolors.WARNING + "Please enter.... [Y]es / [N]o :" + \
-                bcolors.ENDC).upper()
-    if match == 'Y':
-        car.is_parking = not car.is_parking
-        session.add(car)
-        session.commit()
-        if car.is_parking:
-            insertCarParking(car)
-        else:
-            removeCarParking(car)
-        print bcolors.OKGREEN + 'Access Granted!!' + bcolors.ENDC
-        servo.openBarrier()
-        time.sleep(2)
-        servo.closeBarrier()
-
-    else:
-        print bcolors.REDFAIL + 'Access Denied!!' + bcolors.ENDC
-    print '\n\n\n'
+        return 'Car Not Found', 'Car Not Found'
+    # if car.is_parking:
+    #     print 'is this car id "%s"? and go out?' % car.id
+    # else:
+    #     print 'is this car id "%s"? and come in?' % car.id
+    # match = ''
+    # while match != 'Y' and match != 'N':
+    #     match = raw_input(bcolors.WARNING + "Please enter.... [Y]es / [N]o :" + \
+    #             bcolors.ENDC).upper()
+    # if match == 'Y':
+    #     car.is_parking = not car.is_parking
+    #     session.add(car)
+    #     session.commit()
+    #     if car.is_parking:
+    #         insertCarParking(car)
+    #     else:
+    #         removeCarParking(car)
+    #     print bcolors.OKGREEN + 'Access Granted!!' + bcolors.ENDC
+    #     servo.openBarrier()
+    #     time.sleep(2)
+    #     servo.closeBarrier()
+    #
+    # else:
+    #     print bcolors.REDFAIL + 'Access Denied!!' + bcolors.ENDC
+    # print '\n\n\n'
