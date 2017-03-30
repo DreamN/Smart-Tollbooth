@@ -28,7 +28,7 @@ def insertCar():
     addCar('ML2837', 'Blackagar Boltagon', '21,35,129,203')
     addCar('SY8347', 'Daniel Rand', '233,77,128,203')
 
-dropTable()
+# dropTable()
 createTable()
 printInfo()
 insertCar()
