@@ -10,16 +10,9 @@ from RFID import Rfid_Th
 from car import *
 import servo
 import time
-
+import thread
 
 app = Flask(__name__)
-
-class bcolors:
-    REDFAIL = '\033[91m'
-    OKGREEN = '\033[92m'
-    WARNING = '\033[93m'
-    ENDC = '\033[0m'
-
 
 #+-----------------------------------------------------+#
 #|                     Flask's View                    +#
@@ -39,6 +32,6 @@ def index():
 #+-----------------------------------------------------+#
 #Close the barrier when start
 servo.closeBarrier()
-Rfid_Th()
-# if __name__ == "__main__":
-#     app.run(debug=True, host='0.0.0.0', port=80)
+thread.start_new_thread(Rfid_Th)
+if __name__ == "__main__":
+    app.run(debug=True, host='0.0.0.0', port=80)
