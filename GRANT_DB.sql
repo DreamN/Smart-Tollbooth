@@ -1,3 +1,4 @@
+CREATE DATABASE smarttb;
 CREATE USER pjuser WITH PASSWORD 'random';
 ALTER ROLE pjuser SET client_encoding TO 'utf8';
 ALTER ROLE pjuser SET default_transaction_isolation TO 'read committed';
