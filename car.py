@@ -6,7 +6,6 @@ from flask import Flask, jsonify
 from sqlalchemy import create_engine
 from models import Base, engine, session, Car, CarInParking
 from prettytable import PrettyTable
-from RFID import Rfid_Th
 import servo
 import time
 
