@@ -1,13 +1,13 @@
-#################################################################
+	#################################################################
 ##           SERVO LIB for SMART TOLLBOOTH PROJECT             ##
 #################################################################
 
 import RPi.GPIO as GPIO
 import time
 
-GPIO.setmode(GPIO.BCM)
+GPIO.setmode(GPIO.BOARDs)
 
-SERVO = 17
+SERVO = 11
 
 GPIO.setup(SERVO, GPIO.OUT)
 
