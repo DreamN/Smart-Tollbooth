@@ -41,6 +41,7 @@
     function onMessageArrived(message) {
       console.log(message.payloadString);
       $("#tb-title").html(message.payloadString);
+      $("#tb-submit").prop("disabled", false);
     }
 
     $("#tb-submit").click(function() {
@@ -48,5 +49,5 @@
       message = new Paho.MQTT.Message($("#tb-title").html());
       message.destinationName = "/CAR/RES";
       client.send(message);
-      $("#tb-submit").attr("disabled", "disabled"); 
+      $("#tb-submit").prop("disabled", true);
     });
