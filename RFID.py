@@ -4,7 +4,7 @@
 import RPi.GPIO as GPIO
 import psycopg2
 from settings import getDatabaseString
-from app import *
+from car import *
 import os
 import MFRC522
 import signal

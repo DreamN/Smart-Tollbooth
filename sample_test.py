@@ -1,6 +1,6 @@
 import psycopg2
 from settings import getDatabaseString
-from app import *
+from car import *
 import os
 
 def dropTable():
