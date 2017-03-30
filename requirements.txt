@@ -5,3 +5,4 @@ PrettyTable
 sqlalchemy
 spi
 pi-rc522
+openSPI
