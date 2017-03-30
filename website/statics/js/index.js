@@ -48,4 +48,5 @@
       message = new Paho.MQTT.Message($("#tb-title").html());
       message.destinationName = "/CAR/RES";
       client.send(message);
+      $("#tb-submit").attr("disabled", "disabled"); 
     });
