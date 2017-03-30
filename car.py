@@ -7,6 +7,7 @@ from sqlalchemy import create_engine
 from models import Base, engine, session, Car, CarInParking
 from prettytable import PrettyTable
 import time
+import servo
 
 
 app = Flask(__name__)
