@@ -6,6 +6,7 @@ from flask import Flask, jsonify
 from sqlalchemy import create_engine
 from models import Base, engine, session, Car, CarInParking
 from prettytable import PrettyTable
+from RFID import Rfid_Th
 import servo
 import time
 
@@ -133,6 +134,6 @@ def index():
 #+-----------------------------------------------------+#
 #Close the barrier when start
 servo.closeBarrier()
-
-if __name__ == "__main__":
-    app.run(debug=True, host='0.0.0.0', port=80)
+Rfid_Th()
+# if __name__ == "__main__":
+#     app.run(debug=True, host='0.0.0.0', port=80)

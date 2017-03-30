@@ -76,5 +76,3 @@ def Rfid_Th():
             time.sleep(0.4)
             GPIO.output(Buzzer, GPIO.LOW)
             carComing(suid)
-
-Rfid_Th()
