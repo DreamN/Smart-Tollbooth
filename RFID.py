@@ -57,14 +57,13 @@ signal.signal(signal.SIGINT, end_read)
 # Create an object of the class MFRC522
 MIFAREReader = MFRC522.MFRC522()
 
-# Welcome message
-print "Welcome to the MFRC522 data read example"
-print "Press Ctrl-C to stop."
-
 dropTable()
 createTable()
 insertCar()
 printInfo()
+# Welcome message
+print "Welcome to the MFRC522 data read example"
+print "Press Ctrl-C to stop."
 
 GPIO.output(Buzzer, GPIO.LOW)
 # This loop keeps checking for chips. If one is near it will get the UID and authenticate
@@ -84,8 +83,8 @@ while continue_reading:
     if status == MIFAREReader.MI_OK:
 
         # Print UID
-        uid = str(uid[0])+","+str(uid[1])+","+str(uid[2])+","+str(uid[3])
-        print "Card read UID: " + uid
+        suid = str(uid[0])+","+str(uid[1])+","+str(uid[2])+","+str(uid[3])
+        print "Card read UID: " + suid
 
         # This is the default key for authentication
         key = [0xFF,0xFF,0xFF,0xFF,0xFF,0xFF]
@@ -105,4 +104,4 @@ while continue_reading:
         GPIO.output(Buzzer, GPIO.HIGH)
         time.sleep(0.4)
         GPIO.output(Buzzer, GPIO.LOW)
-        carComing(uid)
+        carComing(suid)
