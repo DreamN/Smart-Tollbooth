@@ -107,7 +107,7 @@ def carComing(rfid_id):
             removeCarParking(car)
         print bcolors.OKGREEN + 'Access Granted!!' + bcolors.ENDC
         servo.openBarrier()
-        time.sleep(4)
+        time.sleep(2)
         servo.closeBarrier()
 
     else:
