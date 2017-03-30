@@ -63,6 +63,7 @@ print "Press Ctrl-C to stop."
 
 dropTable()
 createTable()
+insertCar()
 printInfo()
 
 GPIO.output(Buzzer, GPIO.LOW)
