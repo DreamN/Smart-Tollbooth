@@ -39,8 +39,13 @@
 
     // called when a message arrives
     function onMessageArrived(message) {
-      console.log(message.payloadString);
-      $("#tb-title").html(message.payloadString);
+      var strjson = $.parseJSON(message.payloadString);;
+      console.log("On Message: " + strjson["id"]);
+      $("#tb-title").html("Car ID: " + strjson["id"]);
+      $("#tb-img").attr('src',strjson["pic"]);
+      $("#tb-driver").html(strjson["driver"]);
+      $("#tb-datetime").html(strjson["timestamp"]);
+      $("#tb-price").html("100");
       $("#tb-submit").prop("disabled", false);
     }
 

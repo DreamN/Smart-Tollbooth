@@ -29,7 +29,7 @@
         <div class="columns is-vcentered">
           <div class="column is-5">
             <figure class="image is-4by3">
-              <img src="http://placehold.it/800x600" alt="Description">
+              <img id="tb-img" src="http://placehold.it/800x600" alt="Image">
             </figure>
           </div>
           <div class="column is-6 is-offset-1">
@@ -37,11 +37,31 @@
               <span id="tb-title">No Car Available Now!</span>
             </h1>
             <h2 class="subtitle is-4">
-              <span id="tb-detail">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eget ultrices sem. Donec semper volutpat enim, ac feugiat sem hendrerit nec.</span>
+              <span id="tb-detail">
+                <br />
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eget ultrices sem. Donec semper volutpat enim, ac feugiat sem hendrerit nec.
+                <br /><br />
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th><abbr title="Driver">Driver</abbr></th>
+                      <th><abbr title="Datetimes">Datetimes</abbr></th>
+                      <th><abbr title="Prices">Prices</abbr></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td id="tb-driver">No</td>
+                      <td id="tb-datetime">Detail</td>
+                      <td id="tb-price">Available</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </span>
             </h2>
             <br>
             <p class="has-text-centered">
-              <button class="button is-large" id="tb-submit">
+              <button class="button is-large is-primary" id="tb-submit" disabled>
                 Submit
               </button>
             </p>

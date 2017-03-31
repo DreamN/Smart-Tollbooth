@@ -47,6 +47,11 @@ def end_read(signal,frame):
     GPIO.cleanup()
     printInfo()
 
+def calFee(deltat):
+    #Implement this!
+    fee = 30
+    return fee
+
 # Hook the SIGINT
 signal.signal(signal.SIGINT, end_read)
 
