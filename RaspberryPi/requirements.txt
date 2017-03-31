@@ -1,7 +1,4 @@
-psycopg2
-Flask
-gunicorn
 PrettyTable
-sqlalchemy
 pi-rc522
 paho-mqtt
+picamera

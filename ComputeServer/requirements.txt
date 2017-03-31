@@ -1,3 +1,5 @@
+psycopg2
 Flask
 gunicorn
 sqlalchemy
+paho-mqtt

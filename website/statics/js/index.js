@@ -45,8 +45,10 @@
       $("#tb-img").attr('src',strjson["pic"]);
       $("#tb-driver").html(strjson["driver"]);
       $("#tb-datetime").html(strjson["timestamp"]);
-      $("#tb-price").html("100");
-      $("#tb-submit").prop("disabled", false);
+      $("#tb-price").html("200");
+      if(strjson["id"] != "Car not found") {
+        $("#tb-submit").prop("disabled", false);
+      }
     }
 
     $("#tb-submit").click(function() {

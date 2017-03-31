@@ -13,7 +13,7 @@ GPIO.setup(SERVO, GPIO.OUT)
 
 def moveDeg(i):
 	val = 0.001 + (i * 0.002 / 180)
-	for x in range(300):
+	for x in range(400):
 		GPIO.output(SERVO, GPIO.HIGH)
 		time.sleep(val)
 		GPIO.output(SERVO, GPIO.LOW)

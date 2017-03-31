@@ -45,6 +45,6 @@ class Transaction(Base):
     car_id = Column(String(10), ForeignKey('car.id'))
     car = relationship(Car)
     status = Column(String(10))
-    picture = Column(String(50))
+    picture = Column(String(150))
 
 Base.metadata.create_all(engine)
