@@ -1,4 +1,3 @@
 PrettyTable
-pi-rc522
 paho-mqtt
 picamera
