@@ -29,7 +29,7 @@ class Car(Base):
     is_parking = Column(Boolean, default=False)
 
     def changeIsParking(self):
-        self.is_parking = not is_parking
+        self.is_parking = not self.is_parking
 
     @property
     def serialize(self):

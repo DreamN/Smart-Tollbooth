@@ -35,8 +35,6 @@ def index():
 @app.route('/transaction')
 def transaction():
     transactions = session.query(Transaction).all()
-    for t in transactions:
-        print t.car_id
     return render_template('transactionlist.html', transactions = transactions)
 
 
