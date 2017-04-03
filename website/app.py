@@ -37,6 +37,11 @@ def transaction():
     transactions = session.query(Transaction).all()
     return render_template('transactionlist.html', transactions = transactions)
 
+@app.route('/car')
+def car():
+    cars = session.query(Car).all()
+    return render_template('carlist.html', cars = cars)
+
 
 #+-----------------------------------------------------+#
 #|                  Start-Up Statement                 +#

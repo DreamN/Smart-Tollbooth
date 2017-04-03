@@ -80,7 +80,7 @@ def carComing():
 				m = convert_timedelta(datetime.datetime.utcnow() - latest.timestamp)
 				print 'Time delta is: ' + str(m)
 				fee = timedelta_to_fee(m)
-				print 'fee : ' + str(fee)
+				print 'fee : ' + str(fee)	
             else:
                 status = "Come In"
 				fee = 0
