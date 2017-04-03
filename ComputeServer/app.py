@@ -26,18 +26,18 @@ client.connect('m13.cloudmqtt.com', 11675, 60)
 client.loop_start()
 
 def allowed_file(filename):
-	return '.' in filename and \
-	filename.rsplit('.', 1)[1] in app.config['ALLOWED_EXTENSIONS']
+    return '.' in filename and \
+    filename.rsplit('.', 1)[1] in app.config['ALLOWED_EXTENSIONS']
 
 def convert_timedelta(duration):
-	days, seconds = duration.days, duration.seconds
-	minutes = (days*1440) + seconds/60
-	return minutes
+    days, seconds = duration.days, duration.seconds
+    minutes = (days*1440) + seconds/60
+    return minutes
 
 def timedelta_to_fee(t):
-	# 20 bath per hours
-	fee = 20 * ((t/60) + 1)
-	return fee
+    # 20 bath per hours
+    fee = 20 * ((t/60) + 1)
+    return fee
 
 #+-----------------------------------------------------+#
 #|                     Flask's View                    +#
@@ -73,19 +73,22 @@ def carComing():
             status = ""
             if car.is_parking:
                 status = "Go Out"
-				car.changeIsParking()
-				latest = session.query(Transaction).filter_by(car_id = car.id).order_by(Transaction.timestamp.desc()).first()
-				print 'Latest time is: ' + str(latest.timestamp)
-				print 'Current Time is: ' + str(datetime.datetime.utcnow())
-				m = convert_timedelta(datetime.datetime.utcnow() - latest.timestamp)
-				print 'Time delta is: ' + str(m)
-				fee = timedelta_to_fee(m)
-				print 'fee : ' + str(fee)	
+                latest = session.query(Transaction).filter_by(car_id = car.id).order_by(Transaction.timestamp.desc()).first()
+                print 'Latest time is: ' + str(latest.timestamp)
+                print 'Current Time is: ' + str(datetime.datetime.utcnow())
+                m = convert_timedelta(datetime.datetime.utcnow() - latest.timestamp)
+                print 'Time delta is: ' + str(m)
+                fee = timedelta_to_fee(m)
+                print 'fee : ' + str(fee)
             else:
                 status = "Come In"
-				fee = 0
+                fee = '0 (Come In)'
+                print 'fee: ' + str(fee)
+            car.changeIsParking()
+            session.add(car)
+            session.commit()
             print status
-            newTrans = Transaction(car = car, picture = pic, status = status)
+            newTrans = Transaction(car = car, picture = pic)
             #send mqtt to website
             data = {'id': car.id, 'pic': pic, 'driver': car.owner,
                    'timestamp': str(datetime.datetime.now()), 'fee': fee}

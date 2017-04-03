@@ -30,6 +30,7 @@ class Car(Base):
 
     def changeIsParking(self):
         self.is_parking = not self.is_parking
+        print self.is_parking
 
     @property
     def serialize(self):
@@ -52,10 +53,11 @@ class Transaction(Base):
 
     def __init__(self, car, picture):
         self.picture = picture
+        self.car = car
         if car.is_parking:
-            self.status = 'Go Out'
-        else:
             self.status = 'Come In'
+        else:
+            self.status = 'Go Out'
 
     @property
     def serialize(self):
