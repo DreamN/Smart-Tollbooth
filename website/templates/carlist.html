@@ -34,22 +34,18 @@
                 <thead>
                   <tr>
                     <th>ID</th>
-                    <th>Timestamp</th>
-                    <th>Car_ID</th>
-                    <th>Picture</th>
-                    <th>Status</th>
+                    <th>Owner</th>
+                    <th>RFID_ID</th>
+                    <th>Is_Parking</th>
                   </tr>
                 </thead>
                 <tbody>
                   {% for c in cars %}
                   <tr>
                     <th>{{c.id}}</th>
-                    <td>{{c.timestamp}}</td>
-                    <td>{{c.car_id}}</td>
-                    <td>
-                      <a href="{{c.picture}}">{{c.picture}}</a>
-                    </td>
-                    <td>{{c.status}}</td>
+                    <td>{{c.owner}}</td>
+                    <td>{{c.rfid_id}}</td>
+                    <td>{{c.is_parking}}</td>
                   </tr>
                   {% endfor %}
                 </tbody>
