@@ -74,7 +74,7 @@ def main():
         print ("\nlicense plate read from image = " + licPlate.strChars + "\n")       # write license plate text to std out
         print ("----------------------------------------")
 
-        writeLicensePlateCharsOnImage(imgOriginalScene, licPlate)           # write license plate text on the image
+        # writeLicensePlateCharsOnImage(imgOriginalScene, licPlate)           # write license plate text on the image
 
         cv2.imwrite(nameOutputRec, imgOriginalScene)           # write draw Rectangle image out to file
         
@@ -93,10 +93,10 @@ def drawRedRectangleAroundPlate(imgOriginalScene, licPlate):
 
     p2fRectPoints = cv2.boxPoints(licPlate.rrLocationOfPlateInScene)            # get 4 vertices of rotated rect
 
-    cv2.line(imgOriginalScene, tuple(p2fRectPoints[0]), tuple(p2fRectPoints[1]), SCALAR_RED, 2)         # draw 4 red lines
-    cv2.line(imgOriginalScene, tuple(p2fRectPoints[1]), tuple(p2fRectPoints[2]), SCALAR_RED, 2)
-    cv2.line(imgOriginalScene, tuple(p2fRectPoints[2]), tuple(p2fRectPoints[3]), SCALAR_RED, 2)
-    cv2.line(imgOriginalScene, tuple(p2fRectPoints[3]), tuple(p2fRectPoints[0]), SCALAR_RED, 2)
+    cv2.line(imgOriginalScene, tuple(p2fRectPoints[0]), tuple(p2fRectPoints[1]), SCALAR_YELLOW, 2)         # draw 4 red lines
+    cv2.line(imgOriginalScene, tuple(p2fRectPoints[1]), tuple(p2fRectPoints[2]), SCALAR_YELLOW, 2)
+    cv2.line(imgOriginalScene, tuple(p2fRectPoints[2]), tuple(p2fRectPoints[3]), SCALAR_YELLOW, 2)
+    cv2.line(imgOriginalScene, tuple(p2fRectPoints[3]), tuple(p2fRectPoints[0]), SCALAR_YELLOW, 2)
 # end function
 
 ###################################################################################################
