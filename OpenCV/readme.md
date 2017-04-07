@@ -47,4 +47,4 @@ Output/imgPlate.jpg:
 
 [LicPlateImages/use01.jpg]: https://github.com/DreamN/Smart-Tollbooth/blob/master/OpenCV/LicPlateImages/use01.jpg "LicPlateImages/use01.jpg"
 [Output/imgDrawRec.jpg]: https://github.com/DreamN/Smart-Tollbooth/blob/master/OpenCV/Output/imgDrawRec.jpg "Output/imgDrawRec.jpg"
-[Output/imgDrawPlate.jpg]: https://github.com/DreamN/Smart-Tollbooth/blob/master/OpenCV/Output/imgDrawPlate.jpg "Output/imgDrawPlate.jpg"
+[Output/imgPlate.jpg]: https://github.com/DreamN/Smart-Tollbooth/blob/master/OpenCV/Output/imgPlate.jpg "Output/imgPlate.jpg"
