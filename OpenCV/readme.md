@@ -5,7 +5,7 @@ https://www.youtube.com/watch?v=fJcl6Gw1D8k
 
 **1. openCV for python3.6**
   * Download **opencv_python-3.2.0.6-cp36-cp36m-win32.whl (python3.6 32bit )** in this https://pypi.python.org/pypi/opencv-python
-  * Go to folder that keep this file and Use this command to install
+  * Go to folder that keep this file and use this command to install
 ```
  pip install opencv_python-3.2.0.6-cp36-cp36m-win32.whl
 ```
