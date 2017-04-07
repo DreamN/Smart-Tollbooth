@@ -23,6 +23,7 @@ python Main(NoArc).py
 ```
   * The **"LicPlateImages/use01.jpg"** is a default input file.
   * The **"Output/imgDrawRec.jpg"** and **"Output/imgPlate.jpg"** are default output file 
+  
 **2. Run with no argument by run this command** 
 ```
 python Main(Arc).py  [nameInput] [nameOutputRec] [nameOutputPlate]
@@ -44,6 +45,6 @@ Output/imgDrawRec.jpg:
 Output/imgPlate.jpg: 
 ![alt text][Output/imgPlate.jpg]
 
-[LicPlateImages/use01.jpg]: https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "LicPlateImages/use01.jpg"
-[Output/imgDrawRec.jpg]: https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "LicPlateImages/use01.jpg"
-[Output/imgDrawPlate.jpg]: https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "LicPlateImages/use01.jpg"
+[LicPlateImages/use01.jpg]: https://github.com/DreamN/Smart-Tollbooth/blob/master/OpenCV/LicPlateImages/use01.jpg "LicPlateImages/use01.jpg"
+[Output/imgDrawRec.jpg]: https://github.com/DreamN/Smart-Tollbooth/blob/master/OpenCV/Output/imgDrawRec.jpg "Output/imgDrawRec.jpg"
+[Output/imgDrawPlate.jpg]: https://github.com/DreamN/Smart-Tollbooth/blob/master/OpenCV/Output/imgDrawPlate.jpg "Output/imgDrawPlate.jpg"
