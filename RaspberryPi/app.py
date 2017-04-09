@@ -23,6 +23,13 @@ GPIO.setup(Buzzer, GPIO.OUT)
 continue_reading = True
 CSERVER_URL = "https://smarttbcser.herokuapp.com/carComing"
 
+# Ultrasonic
+ECHO = 16
+TRIG = 18
+GPIO.setup(TRIG,GPIO.OUT)
+GPIO.output(TRIG,0)
+GPIO.setup(ECHO,GPIO.IN)
+
 def on_subscribe(client, userdata, mid, granted_qos):
     print("Subscribed: "+str(mid)+" "+str(granted_qos))
 
@@ -42,12 +49,34 @@ client.loop_start()
 camera = PiCamera()
 camera.resolution = (800, 600)
 
+def read_distance():
+    print 'Read Distance'
+    GPIO.output(TRIG,1)
+    time.sleep(0.00001)
+    GPIO.output(TRIG,0)
+    while GPIO.input(ECHO)== 0:
+        pass
+    start = time.time()
+    while GPIO.input(ECHO)== 1:
+        pass
+    stop = time.time()
+    return (stop - start) * 17000
+
 def acceptCar():
     print 'Access Granted!!'
     servo.openBarrier()
-    time.sleep(2)
-    servo.closeBarrier()
-    print 'done'
+    while(1):
+        if(read_distance()<=8):
+            print 'car\'s come'
+            time.sleep(0.8)
+            while(read_distance()<=8):
+                print 'car\'s here'
+                time.sleep(0.8)
+            servo.closeBarrier()
+            print 'done'
+            break
+        else:
+            print 'wait for car'
 
 def TakePic():
         takeTime = time.strftime("%d-%m-%Yh%Hm%Ms%S", time.localtime())

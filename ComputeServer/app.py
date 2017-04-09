@@ -31,12 +31,12 @@ def allowed_file(filename):
 
 def convert_timedelta(duration):
     days, seconds = duration.days, duration.seconds
-    minutes = (days*1440) + seconds/60
+    minutes = (days*1440) + float(seconds/60)
     return minutes
 
 def timedelta_to_fee(t):
     # 20 bath per hours
-    fee = 20 * ((t/60) + 1)
+    fee = 20 * int((t/60) + 1)
     return fee
 
 #+-----------------------------------------------------+#
@@ -101,7 +101,7 @@ def carComing():
             print 'car not found'
             #send mqtt to website
             data = {'id': 'Car not found', 'pic': "http://placehold.it/800x600",
-                   'driver': '-', 'timestamp': '-'}
+                   'driver': '-', 'timestamp': '-', 'fee': 0}
             s = json.dumps(data)
             print s
             client.publish("/CAR/IN", s)
