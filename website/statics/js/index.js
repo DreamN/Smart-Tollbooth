@@ -46,6 +46,7 @@
       $("#tb-driver").html(strjson["driver"]);
       $("#tb-datetime").html(strjson["timestamp"]);
       $("#tb-price").html(strjson["fee"]);
+      $("#tb-predict").html("Predict: " + strjson["predict"]);
       if(strjson["id"] != "Car not found") {
         $("#tb-submit").prop("disabled", false);
       }

@@ -5,6 +5,7 @@ import numpy as np
 import math
 import random
 
+import os
 import Main
 import Preprocess
 import PossibleChar
@@ -433,11 +434,3 @@ def recognizeCharsInPlate(imgThresh, listOfMatchingChars):
 
     return strChars
 # end function
-
-
-
-
-
-
-
-

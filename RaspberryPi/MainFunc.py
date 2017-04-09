@@ -74,8 +74,10 @@ def main(nameInput , nameOutput):
     # end if else
 
     cv2.waitKey(0)					# hold windows open until user presses a key
-
-    return
+    try:
+        return "\nlicense plate read from image = " + licPlate.strChars + "\n"
+    except:
+        return "Can't predict license plate not found"
 # end main
 
 ###################################################################################################
@@ -132,21 +134,3 @@ def writeLicensePlateCharsOnImage(imgOriginalScene, licPlate):
 ###################################################################################################
 if __name__ == "__main__":
     main()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

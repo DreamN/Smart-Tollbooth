@@ -60,6 +60,8 @@ def uploaded_file(filename):
 def carComing():
     if request.method == 'POST':
         car_rfid = request.form.get('car_rfid')
+        predict = request.form.get('predict')
+        print 'The license plate is ' + predict
         print car_rfid
         file = request.files['file']
         if file and allowed_file(file.filename):
@@ -91,7 +93,7 @@ def carComing():
             newTrans = Transaction(car = car, picture = pic)
             #send mqtt to website
             data = {'id': car.id, 'pic': pic, 'driver': car.owner,
-                   'timestamp': str(datetime.datetime.now()), 'fee': fee}
+                   'timestamp': str(datetime.datetime.now()), 'fee': fee, 'predict': predict}
             s = json.dumps(data)
             print s
             client.publish("/CAR/IN", s)
@@ -101,7 +103,7 @@ def carComing():
             print 'car not found'
             #send mqtt to website
             data = {'id': 'Car not found', 'pic': "http://placehold.it/800x600",
-                   'driver': '-', 'timestamp': '-', 'fee': 0}
+                   'driver': '-', 'timestamp': '-', 'fee': 0, 'predict': predict}
             s = json.dumps(data)
             print s
             client.publish("/CAR/IN", s)

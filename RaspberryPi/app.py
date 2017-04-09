@@ -9,6 +9,7 @@ import RPi.GPIO as GPIO
 import paho.mqtt.client as mqtt
 from picamera import PiCamera
 from threading import Thread
+from MainFunc import main
 import os
 import requests
 import MFRC522
@@ -80,11 +81,11 @@ def acceptCar():
 
 def TakePic():
         takeTime = time.strftime("%d-%m-%Yh%Hm%Ms%S", time.localtime())
-        path = "/home/pi/Pictures/"+takeTime+".jpg"
+        path = "/home/pi/PicturesIn/"+takeTime+".jpg"
         print("TAKING PICTURE...")
         camera.capture(path)
         print("COMPLETE TAKE PICTURE!\n")
-        return path
+        return takeTime+".jpg"
 
 # Capture SIGINT for cleanup when the script is aborted
 def end_read(signal,frame):
@@ -133,10 +134,22 @@ def rfid():
             GPIO.output(Buzzer, GPIO.LOW)
             #TAKE PIC
             pathFile = TakePic()
+            print 'picture in'
             print pathFile
+
+            print 'License plate processing...'
+            pathin = "/home/pi/PicturesIn/" + pathFile
+            print pathin
+            pathFile = "/home/pi/Pictures/" + pathFile
+            print pathFile
+            predict = main(pathin,pathFile)
+            print predict
             #POST to CSERVER
-            pic_file = {'file': open(pathFile, 'rb')}
-            r = requests.post(CSERVER_URL, data={'car_rfid': suid}, files = pic_file)
+            try:
+                pic_file = {'file': open(pathFile, 'rb')}
+            except:
+                pic_file = {'file': open(pathin, 'rb')}
+            r = requests.post(CSERVER_URL, data={'car_rfid': suid, 'predict': predict}, files = pic_file)
             print 'done'
 
 

@@ -4,6 +4,6 @@
 
 from MainFunc import main
 
-nameInput = "LicPlateImages\\use01.jpg"
-nameOutput = "Output\\imgDrawRec.jpg"
+nameInput = "LicPlateImages/use01.jpg"
+nameOutput = "Output/imgDrawRec.jpg"
 print(main(nameInput,nameOutput))
